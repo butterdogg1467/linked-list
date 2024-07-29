@@ -1,19 +1,97 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-    let button = document.querySelector('.button')
+    let prependBox = document.querySelector('#prepend')
+    let appendBox = document.querySelector('#append')
+    let appendBtn = document.querySelector('.appendbutton')    
+    let prependBtn = document.querySelector('.prependbutton');
+    let atBox = document.querySelector('.atbox');
+    let atButton = document.querySelector('.at');
+    let containsBox = document.querySelector('.containsbox');
+    let containsButton = document.querySelector('.contains');
+    let findBox = document.querySelector('.findbox');
+    let findButton = document.querySelector('.find');
+    let sizeButton = document.querySelector('.size');
+    let headButton = document.querySelector('.head');
+    let tailButton = document.querySelector('.tail');
+    let popButton = document.querySelector('.pop');
+    let toStringButton = document.querySelector('.toString');
+
+    let listCreated = false
+    let list
+
 
     function linkedList(){
-        let newNode = node()
         let head = null
-        function append(){
+
+        function append(value){
+            let newNode = node(value)
             if (head === null) {
                 head = newNode
+            } else {
+                let current = head
+                while (current.nextNode !== null) { 
+                    current = current.nextNode
+                }
+                current.nextNode = newNode
+            } 
+            
+            let current = head
+            let output = []
+            while (current !== null){
+                output.push(current.value)
+                current = current.nextNode
             }
+            console.log(output)
         }
-        console.log(newNode.value)
-        console.log(newNode.nextNode)
+
+        function prepend(value){
+
+        }
+
+        function size(){
+
+        }
+
+        function returnHead(){
+            console.log(head.value)
+        }
+
+        function returnTail(){
+
+        }
+
+        function at(index){
+
+        }
+
+        function pop(){
+
+        }
+
+        function contains(value){
+
+        }
+
+        function find(value){
+
+        }
+
+        function toString(){
+
+        }
+        
+
         return {
-            append
+            append,
+            prepend,
+            size,
+            returnHead,
+            returnTail,
+            at,
+            pop,
+            contains,
+            find,
+            toString
         }
     }
     
@@ -24,12 +102,25 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
     
-    button.addEventListener('click', function(){
-        linkedList()
+    appendBtn.addEventListener('click', function(){
+        if (listCreated === false) {
+            list = linkedList()
+            listCreated = true
+        }
+        
+        if (listCreated === true) {
+            list.append(appendBox.value)
+        }
+        
     })
 
-
-
+    headButton.addEventListener('click', function(){
+        if (listCreated){
+            list.returnHead()
+        } else {
+            console.log("No List!")
+        }
+    })
 
 
 
