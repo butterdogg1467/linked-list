@@ -45,11 +45,25 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function prepend(value){
+            let newNode = node(value)
+            if (head === null) {
+                head = newNode
+            } else {
+                newNode.nextNode = head
+                head = newNode
+            } 
+            
+            let current = head
+            let output = []
+            while (current !== null){
+                output.push(current.value)
+                current = current.nextNode
+            }
+            console.log(output)
 
         }
 
         function size(){
-
         }
 
         function returnHead(){
@@ -57,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function returnTail(){
-
         }
 
         function at(index){
@@ -110,6 +123,20 @@ document.addEventListener('DOMContentLoaded', function(){
         
         if (listCreated === true) {
             list.append(appendBox.value)
+            appendBox.value = ''
+        }
+        
+    })
+
+    prependBtn.addEventListener('click', function(){
+        if (listCreated === false) {
+            list = linkedList()
+            listCreated = true
+        }
+        
+        if (listCreated === true) {
+            list.prepend(prependBox.value)
+            prependBox.value = ''
         }
         
     })
