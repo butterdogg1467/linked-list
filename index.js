@@ -78,6 +78,14 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function returnTail(){
+            let current = head
+            while (current.nextNode !== null){
+                current = current.nextNode
+                if (current.nextNode === null){
+                    let tail = current
+                    console.log(tail.value)
+                }
+            }
         }
 
         function at(index){
@@ -151,6 +159,14 @@ document.addEventListener('DOMContentLoaded', function(){
     headButton.addEventListener('click', function(){
         if (listCreated){
             list.returnHead()
+        } else {
+            console.log("No List!")
+        }
+    })
+
+    tailButton.addEventListener('click', function(){
+        if (listCreated){
+            list.returnTail()
         } else {
             console.log("No List!")
         }
