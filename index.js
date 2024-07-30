@@ -64,6 +64,13 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function size(){
+            let count = 1
+            let current = head
+            while (current.nextNode !== null) {
+                current = current.nextNode
+                count += 1
+            }
+            console.log(count)
         }
 
         function returnHead(){
@@ -144,6 +151,14 @@ document.addEventListener('DOMContentLoaded', function(){
     headButton.addEventListener('click', function(){
         if (listCreated){
             list.returnHead()
+        } else {
+            console.log("No List!")
+        }
+    })
+
+    sizeButton.addEventListener('click', function(){
+        if (listCreated){
+            list.size()
         } else {
             console.log("No List!")
         }
