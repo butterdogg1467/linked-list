@@ -79,6 +79,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
         function returnTail(){
             let current = head
+            if (head.nextNode === null) {
+                let tail = head
+                console.log(tail.value)
+            }
             while (current.nextNode !== null){
                 current = current.nextNode
                 if (current.nextNode === null){
@@ -126,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             if (head.nextNode !== null && head.nextNode.nextNode === null){
                 head.nextNode = null
-                returnHead()
+                returnTail()
                 toString()
             }
 
