@@ -89,11 +89,55 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function at(index){
+            let currentIndex = 0
+            let current = head
+
+            while (currentIndex !== index) { 
+                if (currentIndex === index){
+                    console.log(current.value)
+                    console.log(currentIndex)
+                    return
+                }
+                currentIndex += 1
+                current = current.nextNode
+
+                
+            }
+            if (current === null){
+                console.log('Index Not Found!')
+                return
+            }
 
         }
 
         function pop(){
+            let current = head
 
+            if (head === null){
+                console.log('List is empty!')
+                toString()
+            }
+
+            if (head.nextNode === null){
+                head = null
+                console.log('Head is ' + head)
+                toString()
+            }
+
+            if (head.nextNode !== null && head.nextNode.nextNode === null){
+                head.nextNode = null
+                returnHead()
+                toString()
+            }
+
+            while (current.nextNode.nextNode !== null){
+                current = current.nextNode
+                if (current.nextNode.nextNode === null){
+                    current.nextNode = null
+                    returnTail()
+                    toString()
+                }
+            }   
         }
 
         function contains(value){
@@ -105,6 +149,13 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function toString(){
+            let current = head
+            let output = []
+            while (current !== null){
+                output.push(current.value)
+                current = current.nextNode
+            }
+            console.log(output)
 
         }
         
@@ -180,9 +231,22 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     })
 
+    atButton.addEventListener('click', function(){
+        if (listCreated){
+            list.at(atBox.value)
+        } else {
+            console.log("No List!")
+        }
+    })
 
-
-
+    popButton.addEventListener('click', function(){
+        if (listCreated){
+            list.pop()
+        } else {
+            console.log("No List!")
+        }
+        
+    })
 
 
 
