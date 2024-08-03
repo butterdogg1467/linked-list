@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
                 current.nextNode = newNode
             } 
-            
+
             let current = head
             let output = []
             while (current !== null){
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 newNode.nextNode = head
                 head = newNode
             } 
-            
+
             let current = head
             let output = []
             while (current !== null){
@@ -117,19 +117,19 @@ document.addEventListener('DOMContentLoaded', function(){
 
             if (head === null){
                 console.log('List is empty!')
-                toString()
+                listToString()
             }
 
             if (head.nextNode === null){
                 head = null
                 console.log('Head is ' + head)
-                toString()
+                listToString()
             }
 
             if (head.nextNode !== null && head.nextNode.nextNode === null){
                 head.nextNode = null
                 returnTail()
-                toString()
+                listToString()
             }
 
             while (current.nextNode.nextNode !== null){
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 if (current.nextNode.nextNode === null){
                     current.nextNode = null
                     returnTail()
-                    toString()
+                    listToString()
                 }
             }   
         }
@@ -160,14 +160,28 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function find(value){
-
+            let current = head
+            let valueIndex = 0
+            
+            while (current !== null) {
+                if (current.value === value) {
+                    console.log(valueIndex)
+                    return
+                }
+                valueIndex += 1
+                current = current.nextNode
+            }
+            console.log('Value does not exist')
         }
 
-        function toString(){
+        function listToString(){
             let current = head
-            let output = []
+            let output = ''
             while (current !== null){
-                output.push(current.value)
+                output += '( ' + current.value + ' ) -> '
+                if (current.nextNode === null) {
+                    output += ' null'
+                }
                 current = current.nextNode
             }
             console.log(output)
@@ -185,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function(){
             pop,
             contains,
             find,
-            toString
+            listToString
         }
     }
     
@@ -272,8 +286,22 @@ document.addEventListener('DOMContentLoaded', function(){
         
     })
 
+    findButton.addEventListener('click', function(){
+        if (listCreated){
+            list.find(findBox.value)
+        } else {
+            console.log("No List!")
+        }
+    })
 
 
+    toStringButton.addEventListener('click', function(){
+        if (listCreated){
+            list.listToString()
+        } else {
+            console.log("No List!")
+        }
+    })
 
 
 
