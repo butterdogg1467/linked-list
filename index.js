@@ -96,10 +96,10 @@ document.addEventListener('DOMContentLoaded', function(){
             let currentIndex = 0
             let current = head
 
-            while (currentIndex !== index) { 
-                if (currentIndex === index){
+            while (current !== null) {
+                let currentStringIndex = currentIndex.toString()
+                if (currentStringIndex === index){
                     console.log(current.value)
-                    console.log(currentIndex)
                     return
                 }
                 currentIndex += 1
@@ -107,10 +107,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 
             }
-            if (current === null){
                 console.log('Index Not Found!')
-                return
-            }
+                
 
         }
 
@@ -145,7 +143,20 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function contains(value){
-
+            let current = head
+            if (head === null) {
+                console.log('Head is null')
+                return
+            }
+            while (current !== null) {
+                if (current.value === value) {
+                    console.log('True')
+                    return
+                } 
+                current = current.nextNode
+                
+            }
+            console.log('False')
         }
 
         function find(value){
@@ -246,6 +257,15 @@ document.addEventListener('DOMContentLoaded', function(){
     popButton.addEventListener('click', function(){
         if (listCreated){
             list.pop()
+        } else {
+            console.log("No List!")
+        }
+        
+    })
+
+    containsButton.addEventListener('click', function(){
+        if (listCreated){
+            list.contains(containsBox.value)
         } else {
             console.log("No List!")
         }
