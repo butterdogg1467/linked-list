@@ -219,7 +219,29 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         function removeAt(index){
-            
+            let current = head
+            let currentIndex = 0
+            let numberIndex = Number(index)
+            let valueRemoveIndex = numberIndex - 1
+
+            if (numberIndex === 0){
+                head = head.nextNode
+                return
+            }
+
+            while (current !== null) {
+                if (currentIndex === valueRemoveIndex && current.nextNode.nextNode !== null) {
+                    current.nextNode = current.nextNode.nextNode
+                    return
+                }
+                else if (currentIndex === valueRemoveIndex && current.nextNode.nextNode === null) {
+                    current.nextNode = current.nextNode
+                    return
+                }
+                current = current.nextNode
+                currentIndex += 1
+            }
+            console.log('Index not found')
         }
         
 
@@ -347,8 +369,13 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     })
 
-
-
+    removeAtButton.addEventListener('click', function(){
+        if (listCreated){
+            list.removeAt(removeAtBox.value)
+        } else {
+            console.log("No List!")
+        }
+    })
 
 
 
