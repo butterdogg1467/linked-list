@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', function(){
     let tailButton = document.querySelector('.tail');
     let popButton = document.querySelector('.pop');
     let toStringButton = document.querySelector('.toString');
+    let insertAtBox = document.querySelector('.insertatbox');
+    let insertAtIndexBox = document.querySelector('.insertatindexbox')
+    let insertAtButton = document.querySelector('.insertat');
+    let removeAtBox = document.querySelector('.removeat');
+    let removeAtButton = document.querySelector('.removeatbutton');
 
     let listCreated = false
     let list
@@ -187,6 +192,35 @@ document.addEventListener('DOMContentLoaded', function(){
             console.log(output)
 
         }
+
+        function insertAt(value, index) {
+            let newNode = node(value)
+            let currentIndex = 0
+            let numberIndex = Number(index)
+            let valuePlaceIndex = numberIndex - 1
+            let current = head
+
+            if (head === null || numberIndex === 0){
+                head = newNode
+                newNode.nextNode = head
+            }
+
+            while (current !== null) {
+                if (currentIndex === valuePlaceIndex) {
+                    newNode.nextNode = current.nextNode
+                    current.nextNode = newNode
+                    return
+                }
+                currentIndex += 1
+                current = current.nextNode
+            }
+            console.log('Index not found')
+
+        }
+
+        function removeAt(index){
+            
+        }
         
 
         return {
@@ -199,7 +233,9 @@ document.addEventListener('DOMContentLoaded', function(){
             pop,
             contains,
             find,
-            listToString
+            listToString,
+            insertAt,
+            removeAt
         }
     }
     
@@ -303,7 +339,13 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     })
 
-
+    insertAtButton.addEventListener('click', function(){
+        if (listCreated){
+            list.insertAt(insertAtBox.value, insertAtIndexBox.value)
+        } else {
+            console.log("No List!")
+        }
+    })
 
 
 
